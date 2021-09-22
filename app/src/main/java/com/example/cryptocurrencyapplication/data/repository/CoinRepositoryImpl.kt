@@ -12,7 +12,7 @@ class CoinRepositoryImpl
         return api.getCoins()
     }
 
-    override suspend fun getCoinById(id: String): CoinDetailDto {
-        return api.getCoinsById(id)
+    override suspend fun getCoinById(coinId: String): CoinDetailDto {
+        return api.getCoinById("bnb-binance-coin")
     }
 }

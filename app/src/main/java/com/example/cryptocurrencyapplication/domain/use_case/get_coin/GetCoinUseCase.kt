@@ -10,12 +10,14 @@ import okio.IOException
 import retrofit2.HttpException
 import javax.inject.Inject
 
-class GetCoinUseCase @Inject constructor(private val repository: CoinRepository) {
+class GetCoinUseCase @Inject constructor(
+    private val repository: CoinRepository
+) {
     operator fun invoke(id: String): Flow<Resource<CoinDetail>> = flow {
         try {
             emit(Resource.Loading<CoinDetail>())
-            val coins = repository.getCoinById(id).toCoinDetail()
-            emit(Resource.Success(coins))
+            val coin = repository.getCoinById(id).toCoinDetail()
+            emit(Resource.Success<CoinDetail>(coin))
         } catch (e: HttpException) {
             emit(
                 Resource.Error<CoinDetail>(e.localizedMessage ?: "An unexpected error occured")
@@ -25,4 +27,5 @@ class GetCoinUseCase @Inject constructor(private val repository: CoinRepository)
         }
 
     }
+
 }

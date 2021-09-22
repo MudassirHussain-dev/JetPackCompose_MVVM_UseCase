@@ -1,5 +1,7 @@
 package com.example.cryptocurrencyapplication.presentation.coin_list
 
+import android.util.Log
+import android.widget.Toast
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -32,6 +34,7 @@ fun CoinListScreen(
                     coin = coin,
                     onItemClick = {
                         navController.navigate(Screen.CoinDetailScreen.route + "/${coin.id}")
+                        Log.d("coin", "CoinListScreen: "+coin.id)
                     }
                 )
 
